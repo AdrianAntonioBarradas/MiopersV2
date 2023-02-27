@@ -1,0 +1,60 @@
+ya iniciado el env y activado
+empezamos el framework de django
+
+django-admin startproject Proyecto_API
+
+
+django-admin startapp api (empezamos aplicacion de la API)
+
+PARA INSTALAR BASE DE DATOS EXISTENTE EN ENV
+	sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+	
+	pip install mysqlclient
+	    install mysql-client
+	
+	sudo apt-get install libmysqlclient-dev
+	
+	
+	
+	Lo que funcionó:
+		pip install mysqlclient
+		
+		Go to the settings.py file of your project and then import
+		
+		import pymysql 
+		pymysql.install_as_MySQLdb()
+		
+		pip install pymysql
+		
+		GOOD LUCK!
+		(se puede intentar pip install mysqlclient pymysql)
+	
+	python manage.py inspectdb > api/models.py
+python manage.py migrate	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+super user: adrian
+email:adriatico.bace@gmail.com
+password:miopers123
+
+	
+	

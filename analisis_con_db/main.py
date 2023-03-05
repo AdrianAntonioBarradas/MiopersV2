@@ -38,7 +38,7 @@ if db.toupdateTema("COVID"):
     
     #descargar tweets (ya filtrados)
     print("Descargando tweets...")
-    #tweets = mongo.consulta_ayer()
+    
 
     #tweets =  mongoDBCon.consulta_ayer(db) Para cuando funcione la Conexión con la Base de MongoDB
     with open('jsontweetverdadero.json', encoding='utf8') as f:# en su lugar usamos este para ver que funcione el sistema
@@ -56,7 +56,7 @@ if db.toupdateTema("COVID"):
     sintomas.ejecutarAnalisis(tweets,db)
     print("analisis sentimientos")
     ayer_str, hoy_str = mongo.fechas_ayer_hoy_string()
-    sentimientos.ejecutarAnalisis(tweets, ayer_str,ayer_str, '/home/adrian/Miopers/sentimientos/data/',db)
+    sentimientos.ejecutarAnalisis(tweets, ayer_str,ayer_str,db)
     print("finish")
     db.fechaFinProceso(db.getCurrentProceso())
 print("fin proceso de análisis")

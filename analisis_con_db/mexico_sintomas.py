@@ -1,6 +1,5 @@
 import metrics_b as mt
 import downTweets_b as dt
-import data_json_b as dj
 from datetime import datetime
 import re
 from typing import List
@@ -25,10 +24,7 @@ def ejecutarAnalisis(tweets,db):
         dicc = json.loads(db.getAnalisisDicc('sintomas'))
         sintomas = dicc['sintomas']
         mentales = dicc['mentales']
-        # direccion = data_path+'json/'
-        # mapa_alcaldias = direccion+'alcaldias.json'
-        feed = "sintomas/feed.pickle"
-        feed_json = "sintomas/feed.json"
+
     except :
         print("Error, Archivos no encontrados")
     today = datetime.now()
@@ -47,35 +43,16 @@ def ejecutarAnalisis(tweets,db):
     datam = mt.etiqueta(data, mentales)
     data_mp = datam[datam['etiqueta'] == 1]
     twe = data_mp['id'].tolist()
-    # data_p = mt.rept_clase(data_mp, 'mentales')
-    # data_f = mt.agrupaFecha(data_mp)
+   
     
 
     dataS = mt.etiqueta(data, sintomas)
     data_Sp = dataS[dataS['etiqueta'] == 1]
     twe2 = data_Sp['id'].tolist()
-    # data_ps = mt.rept_clase(data_Sp, 'sintomas')
-    # data_f2 = mt.agrupaFecha(data_Sp)
-    
-
-    # total = pd.merge(data_f, data_f2, on='fecha2')
-    # #return  mt.unionData(data_ps, data_p)
-    # total.to_csv(data_path+'data_timeline.csv')
  
-    # dj.json_timeline(direccion+'timeline', total, dth) #esta función sobreescribe el JSON con la nueva info
-    # dj.procesar_mapa2(direccion+'alcaldias', mt.unionData(data_ps, data_p), mapa_alcaldias, dth)
-   
-
-    try:
-        # dj.list_id(twe+twe2, feed)
-        dj.list_id(twe+twe2, feed)
-        dj.convert_pickle(feed, feed_json)
-    except:
-        print("Hubo algún error con el pickle")
-    #return  mt.unionData(data_ps, data_p)
     print('Analisis Sintomas terminado')
     
-    #return data_mp, data_Sp
+  
 
     ##para agregar todos los resultados de sintomas mentales y físicos
 

@@ -4,8 +4,8 @@ class DataBase:
         self.connection = pymysql.connect(
             host="localhost",
             user="root",
-            password="Password.03",
-            db="miopers1"
+            password="123Miopers*",
+            db="miopersv2"
         )
         
         

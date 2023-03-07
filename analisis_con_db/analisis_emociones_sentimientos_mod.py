@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+import tempfile
 from nltk import pos_tag
 from nltk.corpus import stopwords
 from string import punctuation
@@ -140,7 +140,7 @@ def analisisEmociones(mensajes,data_path):
     dSet['TweetNegativo'] = np.where((dSet['negative'] > dSet['positive']), 1.0,0)
     
  
-    
+
     #print(dSet)
     df_array =  np.array(dSet) 
     row, col = df_array.shape 
@@ -178,12 +178,7 @@ def analisisEmociones_Sentimientos_X_Tweet(mensajes,db):
     non_words.extend(map(str,range(10)))
     lemmatizer = WordNetLemmatizer()
     
-    #########Para pasarlo después a la base de datos 
-    lexiconList = ""
-    with open("/home/adrian/Miopers/sentimientos/data/lexicon_spanish.txt", "r") as f:
-        for i in f:
-            lexiconList += i
-    import tempfile
+    
     with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
         temp_file.write(db.getAnalisisDicc('analisis_emociones_sentimientos'))
     lexicon = EmoLex(temp_file.name)

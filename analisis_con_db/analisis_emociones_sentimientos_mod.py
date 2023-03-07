@@ -90,13 +90,15 @@ def queryMongoTiempo(tweets,db):
     del dataset8['deCOVIDEncontrando']
     return(dataset8)
 
-def analisisEmociones(mensajes,data_path):
+def analisisEmociones(mensajes,db):
     non_words = list(punctuation)
     non_words.extend(['¿', '¡'])
     non_words.extend(map(str,range(10)))
     lemmatizer = WordNetLemmatizer() 
     
-    lexicon = EmoLex(data_path+'lexicon_spanish.txt')
+    with tempfile.NamedTemporaryFile(mode='w', delete=False) as temp_file:
+        temp_file.write(db.getAnalisisDicc('analisis_emociones_sentimientos'))
+    lexicon = EmoLex(temp_file.name)
     dSet=pd.DataFrame(mensajes) 
     #print(dSet)
     dSet['tweetF']=[lemmatizer.lemmatize(w,'v') for w in dSet.tweet] 
